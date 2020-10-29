@@ -5,14 +5,14 @@ import os
 
 app = Flask(__name__)
 
-
+####### read the current value from local file #######
 def readFile(filename):
     filehandle = open(filename)
     count = int(filehandle.read())
     filehandle.close()
     return count
 
-
+####### write the new value to local file #######
 def updateFile(filename,count):
     count = count
     filehandle = open(filename , "w")
@@ -20,13 +20,13 @@ def updateFile(filename,count):
     filehandle.close()
 
 filename = "count.txt"
-
+####### GET methods #######
 @app.route('/counter-service', methods=['GET'])
 def GetCounter():
     count = 0
     count = readFile(filename)
     return str(count), 200
-
+####### POST methods #######
 @app.route('/counter-service', methods=['POST'])
 def PostCounter():
     count = 0
